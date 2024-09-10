@@ -130,7 +130,4 @@ To configure your iOS project to support VoIP calls, follow these steps:
   
 ## Code Contributors
 
-[![](https://raw.githubusercontent.com/DevCodeSpace/twilio_voice_flutter/main/assets/contributors.png)]
-
-
-
+[![](https://github.com/DevCodeSpace/twilio_voice_flutter/graphs/contributors)](https://raw.githubusercontent.com/DevCodeSpace/twilio_voice_flutter/main/assets/contributors.png)
