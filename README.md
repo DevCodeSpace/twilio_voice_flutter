@@ -8,7 +8,7 @@ Add dependency to your `pubspec.yaml` file & run Pub get
 
 ```yaml
 dependencies:
-  twilio_voice_flutter: ^0.0.1
+  twilio_voice_flutter: ^0.0.2
 ```
 And import package into your class file
 
@@ -97,7 +97,7 @@ To integrate the Twilio Voice plugin into your Android project, follow these ste
    <application>
        ...
        <service
-           android:name="com.twilio.voice.flutter.codex.fcm.VoiceFirebaseMessagingService"
+           android:name="com.twilio.voice.flutter.fcm.VoiceFirebaseMessagingService"
            android:exported="false"
            android:stopWithTask="false">
            <intent-filter> 
@@ -127,7 +127,7 @@ To configure your iOS project to support VoIP calls, follow these steps:
        <string>voip</string>
    </array>
    ```
-  
+
 ## Code Contributors
 
-[![](https://raw.githubusercontent.com/DevCodeSpace/twilio_voice_flutter/main/assets/contributors.png)](https://github.com/DevCodeSpace/twilio_voice_flutter/graphs/contributors)
+[![](https://github.com/DevCodeSpace/twilio_voice_flutter/graphs/contributors)](https://raw.githubusercontent.com/DevCodeSpace/twilio_voice_flutter/main/assets/contributors.png)

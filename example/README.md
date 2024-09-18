@@ -1,6 +1,6 @@
-# example
+# twilio_voice_flutter_example
 
-A new Flutter project.
+Demonstrates how to use the twilio_voice_flutter plugin.
 
 ## Getting Started
 

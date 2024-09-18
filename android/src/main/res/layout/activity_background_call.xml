@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@color/colorGrayBlur" />
+
+        <TextView
+            android:id="@+id/textDisplayName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Display name"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone number"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/containerButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="40dp">
+
+        <LinearLayout
+            android:id="@+id/containerActiveCall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <ImageView
+                android:id="@+id/btnMute"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/bg_full_rounded"
+                android:backgroundTint="@color/call_btn"
+                android:contentDescription="@string/btn_mute"
+                android:padding="20dp"
+                android:src="@drawable/ic_mic"
+                android:tintMode="src_in"
+                app:tint="@color/on_call_btn" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="10dp" />
+
+            <ImageView
+                android:id="@+id/btnHangUp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_full_rounded"
+                android:backgroundTint="@android:color/holo_red_light"
+                android:contentDescription="@string/btn_hung_up"
+                android:elevation="3dp"
+                android:padding="25dp"
+                android:src="@drawable/ic_phone_off"
+                android:tintMode="src_in"
+                app:tint="@color/white" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="10dp" />
+
+            <ImageView
+                android:id="@+id/btnSpeaker"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/bg_full_rounded"
+                android:backgroundTint="@color/call_btn"
+                android:contentDescription="@string/btn_speaker"
+                android:padding="20dp"
+                android:src="@drawable/ic_speaker"
+                android:tintMode="src_in"
+                app:tint="@color/on_call_btn" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerIncomingCall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/btnReject"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_full_rounded"
+                android:backgroundTint="@color/call_reject"
+                android:contentDescription="@string/btn_reject"
+                android:elevation="3dp"
+                android:padding="25dp"
+                android:src="@drawable/ic_phone_off"
+                app:tint="@color/white" />
+
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="10dp" />
+
+            <ImageView
+                android:id="@+id/btnAccept"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_full_rounded"
+                android:backgroundTint="@color/call_accept"
+                android:contentDescription="@string/btn_accept"
+                android:elevation="3dp"
+                android:padding="25dp"
+                android:src="@drawable/ic_phone_call"
+                android:tintMode="src_in"
+                app:tint="@color/white" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/containerLock"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:visibility="gone" />
+</RelativeLayout>
+
+

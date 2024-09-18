@@ -1,0 +1,81 @@
+group = "com.twilio.voice.flutter"
+version = "1.0"
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.1.4")
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: "com.android.library"
+
+android {
+    if (project.android.hasProperty("namespace")) {
+        namespace = "com.twilio.voice.flutter"
+    }
+
+    compileSdk = 34
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdk = 21
+    }
+
+    dependencies {
+        // Firebase
+        implementation platform('com.google.firebase:firebase-bom:33.1.2')
+        implementation "com.google.firebase:firebase-messaging:24.0.0"
+
+        // Kotlin
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10"
+
+        // Twilio
+        implementation "com.twilio:audioswitch:1.1.8"
+        implementation "com.twilio:voice-android:6.6.1"
+
+        // AndroidX
+        implementation 'androidx.appcompat:appcompat:1.6.1'
+        implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+        implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+        implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+
+        // Other
+        implementation 'com.squareup.picasso:picasso:2.71828'
+//        implementation files("libs/flutter.jar")
+
+        // Testing
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+        testImplementation 'org.mockito:mockito-core:5.2.0'
+    }
+
+
+    testOptions {
+        unitTests.all {
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen {false}
+                showStandardStreams = true
+            }
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'org.testng:testng:6.9.6'
+}

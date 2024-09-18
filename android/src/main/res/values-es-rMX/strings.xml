@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_incoming_call_title">Llamada entrante</string>
+    <string name="notification_incoming_call_text">De %s</string>
+    <string name="notification_missed_call_title">Llamada perdida</string>
+    <string name="notification_missed_call_text">De %s</string>
+
+    <string name="btn_speaker">Altavoz</string>
+    <string name="btn_mute">Silenciar</string>
+    <string name="btn_accept">Aceptar</string>
+    <string name="btn_reject">Rechazar</string>
+    <string name="btn_hung_up">Cortar</string>
+    <string name="btn_call_back">Devolver llamada</string>
+
+    <string name="call_status_connecting">Conectando</string>
+    <string name="call_status_ringing">Sonando</string>
+    <string name="call_status_reconnecting">Reconectando</string>
+</resources>

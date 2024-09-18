@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -50,19 +41,51 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: '---',
-    appId: '---',
-    messagingSenderId: '---',
-    projectId: '---',
-    storageBucket: '---',
+    apiKey: 'AIzaSyABKNRg8ObadKT8Wy5-aPAi-QPm64t26cE',
+    appId: '1:6505465033:android:b766acce6310bba8677918',
+    messagingSenderId: '6505465033',
+    projectId: 'twiliodemo-9cbd0',
+    storageBucket: 'twiliodemo-9cbd0.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: '---',
-    appId: '---',
-    messagingSenderId: '---',
-    projectId: '---',
-    storageBucket: '---',
-    iosBundleId: '---',
+    apiKey: 'AIzaSyB-WPgbjZdoucONVTEyS7ZwrEXme3cccbM',
+    appId: '1:6505465033:ios:5e1ba0b32edaaac6677918',
+    messagingSenderId: '6505465033',
+    projectId: 'twiliodemo-9cbd0',
+    storageBucket: 'twiliodemo-9cbd0.appspot.com',
+    androidClientId: '6505465033-itcftjefdk2mr4q5thve79l3ogcatg5a.apps.googleusercontent.com',
+    iosClientId: '6505465033-gg03snaasqm26kfa50q4tb9ak93cani9.apps.googleusercontent.com',
+    iosBundleId: 'com.example.twilioVoiceFlutterExample',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyByIe1FfacAzIjrytBdr1HH5-03_pGIUUc',
+    appId: '1:6505465033:web:297b463671ab516f677918',
+    messagingSenderId: '6505465033',
+    projectId: 'twiliodemo-9cbd0',
+    authDomain: 'twiliodemo-9cbd0.firebaseapp.com',
+    storageBucket: 'twiliodemo-9cbd0.appspot.com',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyB-WPgbjZdoucONVTEyS7ZwrEXme3cccbM',
+    appId: '1:6505465033:ios:5e1ba0b32edaaac6677918',
+    messagingSenderId: '6505465033',
+    projectId: 'twiliodemo-9cbd0',
+    storageBucket: 'twiliodemo-9cbd0.appspot.com',
+    androidClientId: '6505465033-itcftjefdk2mr4q5thve79l3ogcatg5a.apps.googleusercontent.com',
+    iosClientId: '6505465033-gg03snaasqm26kfa50q4tb9ak93cani9.apps.googleusercontent.com',
+    iosBundleId: 'com.example.twilioVoiceFlutterExample',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyByIe1FfacAzIjrytBdr1HH5-03_pGIUUc',
+    appId: '1:6505465033:web:9013465c81d124fe677918',
+    messagingSenderId: '6505465033',
+    projectId: 'twiliodemo-9cbd0',
+    authDomain: 'twiliodemo-9cbd0.firebaseapp.com',
+    storageBucket: 'twiliodemo-9cbd0.appspot.com',
+  );
+
 }
