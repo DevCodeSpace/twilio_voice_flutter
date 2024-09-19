@@ -54,8 +54,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '6505465033',
     projectId: 'twiliodemo-9cbd0',
     storageBucket: 'twiliodemo-9cbd0.appspot.com',
-    androidClientId: '6505465033-itcftjefdk2mr4q5thve79l3ogcatg5a.apps.googleusercontent.com',
-    iosClientId: '6505465033-gg03snaasqm26kfa50q4tb9ak93cani9.apps.googleusercontent.com',
+    androidClientId:
+        '6505465033-itcftjefdk2mr4q5thve79l3ogcatg5a.apps.googleusercontent.com',
+    iosClientId:
+        '6505465033-gg03snaasqm26kfa50q4tb9ak93cani9.apps.googleusercontent.com',
     iosBundleId: 'com.example.twilioVoiceFlutterExample',
   );
 
@@ -74,8 +76,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '6505465033',
     projectId: 'twiliodemo-9cbd0',
     storageBucket: 'twiliodemo-9cbd0.appspot.com',
-    androidClientId: '6505465033-itcftjefdk2mr4q5thve79l3ogcatg5a.apps.googleusercontent.com',
-    iosClientId: '6505465033-gg03snaasqm26kfa50q4tb9ak93cani9.apps.googleusercontent.com',
+    androidClientId:
+        '6505465033-itcftjefdk2mr4q5thve79l3ogcatg5a.apps.googleusercontent.com',
+    iosClientId:
+        '6505465033-gg03snaasqm26kfa50q4tb9ak93cani9.apps.googleusercontent.com',
     iosBundleId: 'com.example.twilioVoiceFlutterExample',
   );
 
@@ -87,5 +91,4 @@ class DefaultFirebaseOptions {
     authDomain: 'twiliodemo-9cbd0.firebaseapp.com',
     storageBucket: 'twiliodemo-9cbd0.appspot.com',
   );
-
 }

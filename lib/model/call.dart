@@ -16,7 +16,7 @@ class TwilioVoiceFlutterCall extends Equatable {
   final String to;
   final String toPhotoURL;
 
-  TwilioVoiceFlutterCall({
+  const TwilioVoiceFlutterCall({
     required this.id,
     required this.fromDisplayName,
     required this.toDisplayName,

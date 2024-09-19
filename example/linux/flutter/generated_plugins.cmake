@@ -3,7 +3,6 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  twilio_voice_flutter
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

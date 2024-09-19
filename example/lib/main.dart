@@ -9,10 +9,9 @@ import 'package:twilio_voice_flutter/twilio_voice_flutter.dart';
 import 'package:twilio_voice_flutter_example/firebase_options.dart';
 import 'package:twilio_voice_flutter_example/twilio_voice_services.dart';
 
-
 GlobalKey<NavigatorState> appKey = GlobalKey<NavigatorState>();
 
-void main()async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   TwilioVoiceFlutter.init();
@@ -29,7 +28,6 @@ class MyApp extends StatelessWidget {
       navigatorKey: appKey,
       title: 'Twilio Voice Demo',
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -46,7 +44,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   bool _isSpeaker = false;
   bool _isMuted = false;
   bool _isCalling = false;
@@ -60,13 +57,14 @@ class _MyHomePageState extends State<MyHomePage> {
     callEventsListener?.cancel();
     callEventsListener = null;
     callEventsListener = TwilioVoiceServices.callEventsListener.listen((event) {
-      if (event.status == TwilioVoiceFlutterStatus.ringing || event.status == TwilioVoiceFlutterStatus.connected) {
+      if (event.status == TwilioVoiceFlutterStatus.ringing ||
+          event.status == TwilioVoiceFlutterStatus.connected) {
         _callStatus = "Ringing...";
-      }else if(event.status == TwilioVoiceFlutterStatus.connecting){
+      } else if (event.status == TwilioVoiceFlutterStatus.connecting) {
         _callStatus = "Connecting...";
-      }else if(event.status == TwilioVoiceFlutterStatus.reconnected){
-        _callStatus ="Reconnected...";
-      }else if(event.status == TwilioVoiceFlutterStatus.disconnected){
+      } else if (event.status == TwilioVoiceFlutterStatus.reconnected) {
+        _callStatus = "Reconnected...";
+      } else if (event.status == TwilioVoiceFlutterStatus.disconnected) {
         endCall();
       }
       setState(() {});
@@ -95,50 +93,76 @@ class _MyHomePageState extends State<MyHomePage> {
             TextField(
               controller: identifyController,
               decoration: InputDecoration(
-                hintText: "Enter call identifier",
-                enabled: !_isCalling
-              ),
+                  hintText: "Enter call identifier", enabled: !_isCalling),
             ),
             const Spacer(),
-            Text(_callStatus,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+            Text(
+              _callStatus,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            ),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton.filled(
-                    onPressed: (){
-                      toggleSpeaker();
-                    },
-                    icon: _isMuted ?  const Icon(Icons.mic,size: 30,) : const Icon(Icons.mic_off_rounded,size: 30,),
+                  onPressed: () {
+                    toggleSpeaker();
+                  },
+                  icon: _isMuted
+                      ? const Icon(
+                          Icons.mic,
+                          size: 30,
+                        )
+                      : const Icon(
+                          Icons.mic_off_rounded,
+                          size: 30,
+                        ),
                 ),
-                const SizedBox(width: 15,),
+                const SizedBox(
+                  width: 15,
+                ),
                 Theme(
                   data: ThemeData(
-                    iconButtonTheme: IconButtonThemeData(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(_isCalling ? Colors.red : Colors.green)
-                      )
-                    )
-                  ),
+                      iconButtonTheme: IconButtonThemeData(
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  _isCalling ? Colors.red : Colors.green)))),
                   child: IconButton.filled(
                     color: Colors.white,
-                    onPressed: (){
-                      if(!_isCalling){
+                    onPressed: () {
+                      if (!_isCalling) {
                         makeCall(identifyController.text);
-                      }else{
+                      } else {
                         endCall();
                       }
                     },
-                    icon: _isCalling ?  const Icon(Icons.call_end,size: 30,) : const Icon(Icons.call,size: 30,),
+                    icon: _isCalling
+                        ? const Icon(
+                            Icons.call_end,
+                            size: 30,
+                          )
+                        : const Icon(
+                            Icons.call,
+                            size: 30,
+                          ),
                   ),
                 ),
-                const SizedBox(width: 15,),
-                IconButton.filled(
-                  onPressed: (){
-                    toggleSpeaker();
-                  },
-                  icon: _isSpeaker ? const Icon(CupertinoIcons.speaker_fill,size: 30,) : const Icon(CupertinoIcons.speaker_slash_fill,size: 30,)
+                const SizedBox(
+                  width: 15,
                 ),
+                IconButton.filled(
+                    onPressed: () {
+                      toggleSpeaker();
+                    },
+                    icon: _isSpeaker
+                        ? const Icon(
+                            CupertinoIcons.speaker_fill,
+                            size: 30,
+                          )
+                        : const Icon(
+                            CupertinoIcons.speaker_slash_fill,
+                            size: 30,
+                          )),
               ],
             )
           ],
@@ -147,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void endCall()async{
+  void endCall() async {
     await TwilioVoiceServices.hangUp();
     setState(() {
       _isCalling = false;
@@ -155,25 +179,25 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void makeCall(String identify)async{
+  void makeCall(String identify) async {
     setState(() {
-     _isCalling = true;
+      _isCalling = true;
     });
     final status = await TwilioVoiceServices.makeCall(to: identify);
-    if(!status){
+    if (!status) {
       setState(() {
         _isCalling = false;
       });
     }
   }
 
-  toggleSpeaker()async{
-     _isSpeaker = await TwilioVoiceServices.toggleSpeaker()??_isSpeaker;
-     setState(() {});
+  toggleSpeaker() async {
+    _isSpeaker = await TwilioVoiceServices.toggleSpeaker() ?? _isSpeaker;
+    setState(() {});
   }
 
-  toggleMuted()async{
-    _isMuted = await TwilioVoiceServices.toggleMute()??_isMuted;
+  toggleMuted() async {
+    _isMuted = await TwilioVoiceServices.toggleMute() ?? _isMuted;
     setState(() {});
   }
 }

@@ -10,17 +10,16 @@ import 'package:twilio_voice_flutter/twilio_voice_flutter.dart';
 import 'main.dart';
 
 class TwilioVoiceServices {
-
-  static Future<String> _getAccessToken(String identity)async{
+  static Future<String> _getAccessToken(String identity) async {
     String accessToken = "PLEASE PUT ACCESS TOKEN HERE";
     return accessToken;
   }
 
-  static Stream<TwilioVoiceFlutterEvent> get callEventsListener{
+  static Stream<TwilioVoiceFlutterEvent> get callEventsListener {
     return TwilioVoiceFlutter.onCallEvent;
   }
 
-  static Future<void> initialize()async{
+  static Future<void> initialize() async {
     await setTwilioToken("alice");
   }
 
@@ -36,23 +35,25 @@ class TwilioVoiceServices {
 
     if (Platform.isAndroid) {
       String? fcmToken = await _getFcmToken();
-      try{
-        await TwilioVoiceFlutter.register(identity: identity, accessToken: accessToken, fcmToken: fcmToken);
-      }on  PlatformException catch(error){
-        if(error.code == "TOKEN_EXPIRED"){
-          showSnackBar(error.message.toString(),MsgStatus.error);
-        }else{
-          showSnackBar(error.message.toString(),MsgStatus.warning);
+      try {
+        await TwilioVoiceFlutter.register(
+            identity: identity, accessToken: accessToken, fcmToken: fcmToken);
+      } on PlatformException catch (error) {
+        if (error.code == "TOKEN_EXPIRED") {
+          showSnackBar(error.message.toString(), MsgStatus.error);
+        } else {
+          showSnackBar(error.message.toString(), MsgStatus.warning);
         }
       }
     } else {
-      try{
-        await TwilioVoiceFlutter.register(identity: identity, accessToken: accessToken, fcmToken: "");
-      }on  PlatformException catch(error){
-        if(error.code == "TOKEN_EXPIRED"){
-          showSnackBar(error.message.toString(),MsgStatus.error);
-        }else{
-          showSnackBar(error.message.toString(),MsgStatus.warning);
+      try {
+        await TwilioVoiceFlutter.register(
+            identity: identity, accessToken: accessToken, fcmToken: "");
+      } on PlatformException catch (error) {
+        if (error.code == "TOKEN_EXPIRED") {
+          showSnackBar(error.message.toString(), MsgStatus.error);
+        } else {
+          showSnackBar(error.message.toString(), MsgStatus.warning);
         }
       }
     }
@@ -60,7 +61,7 @@ class TwilioVoiceServices {
   }
 
   static Future<String> _getFcmToken() async {
-    return await FirebaseMessaging.instance.getToken()??"";
+    return await FirebaseMessaging.instance.getToken() ?? "";
   }
 
   static Future<bool> makeCall({required String to}) async {
@@ -117,12 +118,11 @@ class TwilioVoiceServices {
     }
   }
 
-
-  static Future<bool?> toggleSpeaker()async{
-    try{
+  static Future<bool?> toggleSpeaker() async {
+    try {
       await TwilioVoiceFlutter.toggleSpeaker();
       return await TwilioVoiceFlutter.isSpeaker();
-    }catch(e){
+    } catch (e) {
       showSnackBar(e.toString());
     }
     return null;
@@ -151,9 +151,4 @@ class TwilioVoiceServices {
   }
 }
 
-
-enum MsgStatus{
-  error,
-  success,
-  warning
-}
+enum MsgStatus { error, success, warning }

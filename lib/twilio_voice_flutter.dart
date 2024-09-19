@@ -13,7 +13,8 @@ import 'model/status.dart';
 class TwilioVoiceFlutter {
   static const MethodChannel _channel = MethodChannel('twilio_voice_flutter');
 
-  static const MethodChannel _eventChannel = MethodChannel('twilio_voice_flutter_response');
+  static const MethodChannel _eventChannel =
+      MethodChannel('twilio_voice_flutter_response');
 
   static late StreamController<TwilioVoiceFlutterEvent> _streamController;
 
@@ -30,11 +31,15 @@ class TwilioVoiceFlutter {
         final eventType = getEventType(event.method);
         TwilioVoiceFlutterCall? call;
         try {
-          call = TwilioVoiceFlutterCall.fromMap(Map<String, dynamic>.from(event.arguments));
-        } catch (error) {}
+          call = TwilioVoiceFlutterCall.fromMap(
+              Map<String, dynamic>.from(event.arguments));
+        } catch (error) {
+          log("$error");
+        }
         _streamController.add(TwilioVoiceFlutterEvent(eventType, call));
       } catch (error, stack) {
-        log("Error parsing call event. ${event.arguments}", error: error, stackTrace: stack);
+        log("Error parsing call event. ${event.arguments}",
+            error: error, stackTrace: stack);
       }
     });
 
@@ -44,12 +49,24 @@ class TwilioVoiceFlutter {
   }
 
   static TwilioVoiceFlutterStatus getEventType(String event) {
-    if (event == "callConnecting") return TwilioVoiceFlutterStatus.connecting;
-    if (event == "callDisconnected") return TwilioVoiceFlutterStatus.disconnected;
-    if (event == "callRinging") return TwilioVoiceFlutterStatus.ringing;
-    if (event == "callConnected") return TwilioVoiceFlutterStatus.connected;
-    if (event == "callReconnecting") return TwilioVoiceFlutterStatus.reconnecting;
-    if (event == "callReconnected") return TwilioVoiceFlutterStatus.reconnected;
+    if (event == "callConnecting") {
+      return TwilioVoiceFlutterStatus.connecting;
+    }
+    if (event == "callDisconnected") {
+      return TwilioVoiceFlutterStatus.disconnected;
+    }
+    if (event == "callRinging") {
+      return TwilioVoiceFlutterStatus.ringing;
+    }
+    if (event == "callConnected") {
+      return TwilioVoiceFlutterStatus.connected;
+    }
+    if (event == "callReconnecting") {
+      return TwilioVoiceFlutterStatus.reconnecting;
+    }
+    if (event == "callReconnected") {
+      return TwilioVoiceFlutterStatus.reconnected;
+    }
     return TwilioVoiceFlutterStatus.unknown;
   }
 
@@ -58,7 +75,9 @@ class TwilioVoiceFlutter {
   }
 
   static Stream<TwilioVoiceFlutterEvent> get onCallConnecting {
-    return _streamController.stream.asBroadcastStream().where((event) => event.status == TwilioVoiceFlutterStatus.connecting);
+    return _streamController.stream
+        .asBroadcastStream()
+        .where((event) => event.status == TwilioVoiceFlutterStatus.connecting);
   }
 
   static Future<TwilioVoiceFlutterCall> makeCall({
@@ -130,9 +149,9 @@ class TwilioVoiceFlutter {
   }
 
   static Future<void> setContactData(
-      List<TwilioVoiceFlutterContactData> data, {
-        String defaultDisplayName = "Unknown number",
-      }) async {
+    List<TwilioVoiceFlutterContactData> data, {
+    String defaultDisplayName = "Unknown number",
+  }) async {
     final args = <String, dynamic>{};
     for (var element in data) {
       args[element.phoneNumber] = {
