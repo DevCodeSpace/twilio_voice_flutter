@@ -6,7 +6,7 @@ issue_tracker: https://github.com/DevCodeSpace/twilio_voice_flutter/issues
 documentation: https://pub.dev/documentation/twilio_voice_flutter/latest/
 
 environment:
-  sdk: ^3.5.1
+  sdk: '>=3.4.3 <4.0.0'
   flutter: '>=3.3.0'
 
 dependencies:
