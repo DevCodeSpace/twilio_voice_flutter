@@ -41,52 +41,48 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyABKNRg8ObadKT8Wy5-aPAi-QPm64t26cE',
-    appId: '1:6505465033:android:b766acce6310bba8677918',
-    messagingSenderId: '6505465033',
+    apiKey: 'Replace with your value',
+    appId: 'Replace with your value',
+    messagingSenderId: 'Replace with your value',
     projectId: 'twiliodemo-9cbd0',
     storageBucket: 'twiliodemo-9cbd0.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB-WPgbjZdoucONVTEyS7ZwrEXme3cccbM',
-    appId: '1:6505465033:ios:5e1ba0b32edaaac6677918',
-    messagingSenderId: '6505465033',
+    apiKey: 'Replace with your value',
+    appId: 'Replace with your value',
+    messagingSenderId: 'Replace with your value',
     projectId: 'twiliodemo-9cbd0',
     storageBucket: 'twiliodemo-9cbd0.appspot.com',
-    androidClientId:
-        '6505465033-itcftjefdk2mr4q5thve79l3ogcatg5a.apps.googleusercontent.com',
-    iosClientId:
-        '6505465033-gg03snaasqm26kfa50q4tb9ak93cani9.apps.googleusercontent.com',
+    androidClientId: 'Replace with your value',
+    iosClientId: 'Replace with your value',
     iosBundleId: 'com.example.twilioVoiceFlutterExample',
   );
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyByIe1FfacAzIjrytBdr1HH5-03_pGIUUc',
-    appId: '1:6505465033:web:297b463671ab516f677918',
-    messagingSenderId: '6505465033',
+    apiKey: 'Replace with your value',
+    appId: 'Replace with your value',
+    messagingSenderId: 'Replace with your value',
     projectId: 'twiliodemo-9cbd0',
     authDomain: 'twiliodemo-9cbd0.firebaseapp.com',
     storageBucket: 'twiliodemo-9cbd0.appspot.com',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyB-WPgbjZdoucONVTEyS7ZwrEXme3cccbM',
-    appId: '1:6505465033:ios:5e1ba0b32edaaac6677918',
-    messagingSenderId: '6505465033',
+    apiKey: 'Replace with your value',
+    appId: 'Replace with your value',
+    messagingSenderId: 'Replace with your value',
     projectId: 'twiliodemo-9cbd0',
     storageBucket: 'twiliodemo-9cbd0.appspot.com',
-    androidClientId:
-        '6505465033-itcftjefdk2mr4q5thve79l3ogcatg5a.apps.googleusercontent.com',
-    iosClientId:
-        '6505465033-gg03snaasqm26kfa50q4tb9ak93cani9.apps.googleusercontent.com',
+    androidClientId: 'Replace with your value',
+    iosClientId: 'Replace with your value',
     iosBundleId: 'com.example.twilioVoiceFlutterExample',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyByIe1FfacAzIjrytBdr1HH5-03_pGIUUc',
-    appId: '1:6505465033:web:9013465c81d124fe677918',
-    messagingSenderId: '6505465033',
+    apiKey: 'Replace with your value',
+    appId: 'Replace with your value',
+    messagingSenderId: 'Replace with your value',
     projectId: 'twiliodemo-9cbd0',
     authDomain: 'twiliodemo-9cbd0.firebaseapp.com',
     storageBucket: 'twiliodemo-9cbd0.appspot.com',

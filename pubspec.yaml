@@ -1,21 +1,21 @@
 name: twilio_voice_flutter
 description: Voice SDK to allow adding voice-over-IP (VoIP) calling into your Flutter applications.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/DevCodeSpace/twilio_voice_flutter
 issue_tracker: https://github.com/DevCodeSpace/twilio_voice_flutter/issues
 documentation: https://pub.dev/documentation/twilio_voice_flutter/latest/
 
 environment:
-  sdk: '>=3.4.1 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: ^3.5.1
+  flutter: '>=3.3.0'
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  web: ^0.5.1
-  plugin_platform_interface: ^2.0.2
+  web: ^1.0.0
+  plugin_platform_interface: ^2.1.8
 
   equatable: ^2.0.5
 

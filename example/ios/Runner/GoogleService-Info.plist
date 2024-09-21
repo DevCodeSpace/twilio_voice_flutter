@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>6505465033-gg03snaasqm26kfa50q4tb9ak93cani9.apps.googleusercontent.com</string>
+	<string>Replace with your value</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.6505465033-gg03snaasqm26kfa50q4tb9ak93cani9</string>
+	<string>Replace with your value</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>6505465033-itcftjefdk2mr4q5thve79l3ogcatg5a.apps.googleusercontent.com</string>
+	<string>Replace with your value</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB-WPgbjZdoucONVTEyS7ZwrEXme3cccbM</string>
+	<string>Replace with your value</string>
 	<key>GCM_SENDER_ID</key>
-	<string>6505465033</string>
+	<string>Replace with your value</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.twilioVoiceFlutterExample</string>
 	<key>PROJECT_ID</key>
-	<string>twiliodemo-9cbd0</string>
+	<string>Replace with your value</string>
 	<key>STORAGE_BUCKET</key>
 	<string>twiliodemo-9cbd0.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:6505465033:ios:5e1ba0b32edaaac6677918</string>
+	<string>Replace with your value</string>
 </dict>
 </plist>

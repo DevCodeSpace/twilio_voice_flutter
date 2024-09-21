@@ -8,13 +8,93 @@ Add dependency to your `pubspec.yaml` file & run Pub get
 
 ```yaml
 dependencies:
-  twilio_voice_flutter: ^0.0.2
+  twilio_voice_flutter: ^0.0.3
 ```
 And import package into your class file
 
 ```dart
 import 'package:twilio_voice_flutter/twilio_voice_flutter.dart';
 ```
+## Important Note
+⚠️ This plugin requires Firebase setup for Twilio voice calls! It uses FCM tokens for handling calls on Android 📲 and VoIP notifications for iOS 📞. Ensure both platforms are properly configured for smooth call functionality. ⚠️
+
+
+## Platform Setup
+
+### Android
+
+To integrate the Twilio Voice plugin into your Android project, follow these steps:
+
+- Open your project's `AndroidManifest.xml` file.
+- Add the following service declaration inside the `<application>` tag:
+
+   ```xml
+   <application>
+       ...
+       <service
+           android:name="com.twilio.voice.flutter.fcm.VoiceFirebaseMessagingService"
+           android:exported="false"
+           android:stopWithTask="false">
+           <intent-filter> 
+               <action android:name="com.google.firebase.MESSAGING_EVENT" />
+           </intent-filter> 
+       </service>
+       ...
+   </application>
+   ```
+
+### iOS
+
+To configure your iOS project to support VoIP calls, follow these steps:
+
+- Open your project in Xcode.
+- Select your project from the Project Navigator.
+- Go to the **Signing & Capabilities** tab.
+- Enable the following Background Modes:
+    - **Audio, AirPlay, and Picture in Picture**: Allows your app to continue playing audio while in the background.
+    - **Voice over IP**: Enables your app to receive incoming VoIP calls while in the background.
+- Ensure that your `Info.plist` file includes the required keys:
+
+   ```xml
+   <key>UIBackgroundModes</key>
+   <array>
+       <string>audio</string>
+       <string>voip</string>
+   </array>
+   ```
+
+## 🔑 Twilio Voice Call Access Token Setup
+
+This plugin supports Twilio voice calls for both Android and iOS. To generate the access token and enable Twilio calls, follow the steps in the official Twilio repositories:
+
+- https://github.com/twilio/voice-quickstart-android
+- https://github.com/twilio/voice-quickstart-ios
+
+These repositories provide detailed instructions for generating access tokens and making voice calls through Twilio on both Android and iOS platforms. ⚡ Make sure to follow the steps outlined to successfully integrate Twilio voice functionality into your application.
+
+## Setting Up Twilio Token
+
+The `setTwilioToken` function is used to register a user's identity with Twilio Voice using the provided access token. This function handles the retrieval of the Firebase Cloud Messaging (FCM) token on Android devices and registers the user with Twilio Voice.
+
+```dart
+static Future<bool> setTwilioToken(String identity, String accessToken) async {
+    try{
+      String accessToken = await _getAccessToken(identity);
+      if (Platform.isAndroid) {
+        String? fcmToken = await FirebaseMessaging.instance.getToken() ?? "";
+        await TwilioVoiceFlutter.register(
+            identity: identity, accessToken: accessToken, fcmToken: fcmToken);
+      } else {
+        await TwilioVoiceFlutter.register(
+            identity: identity, accessToken: accessToken, fcmToken: "");
+      }
+      return true;
+    }catch(_){
+      return false;
+    }
+}
+```
+[🔗 Visit example for more info... 😊](https://github.com/DevCodeSpace/twilio_voice_flutter/tree/main/example)
 
 ## Features
 
@@ -84,50 +164,6 @@ With these features, the Twilio Voice Plugin provides a robust foundation for in
 - **`sendDigits(String digits)`**:
   Sends DTMF digits during an active call.
 
-## Platform Setup
-
-### Android
-
-To integrate the Twilio Voice plugin into your Android project, follow these steps:
-
-- Open your project's `AndroidManifest.xml` file.
-- Add the following service declaration inside the `<application>` tag:
-
-   ```xml
-   <application>
-       ...
-       <service
-           android:name="com.twilio.voice.flutter.fcm.VoiceFirebaseMessagingService"
-           android:exported="false"
-           android:stopWithTask="false">
-           <intent-filter> 
-               <action android:name="com.google.firebase.MESSAGING_EVENT" />
-           </intent-filter> 
-       </service>
-       ...
-   </application>
-   ```
-
-### iOS
-
-To configure your iOS project to support VoIP calls, follow these steps:
-
-- Open your project in Xcode.
-- Select your project from the Project Navigator.
-- Go to the **Signing & Capabilities** tab.
-- Enable the following Background Modes:
-    - **Audio, AirPlay, and Picture in Picture**: Allows your app to continue playing audio while in the background.
-    - **Voice over IP**: Enables your app to receive incoming VoIP calls while in the background.
-- Ensure that your `Info.plist` file includes the required keys:
-
-   ```xml
-   <key>UIBackgroundModes</key>
-   <array>
-       <string>audio</string>
-       <string>voip</string>
-   </array>
-   ```
-
 ## Code Contributors
 
-[![](https://github.com/DevCodeSpace/twilio_voice_flutter/graphs/contributors)](https://raw.githubusercontent.com/DevCodeSpace/twilio_voice_flutter/main/assets/contributors.png)
+[![](https://raw.githubusercontent.com/DevCodeSpace/twilio_voice_flutter/main/assets/contributors.png)](https://github.com/DevCodeSpace/twilio_voice_flutter/graphs/contributors)

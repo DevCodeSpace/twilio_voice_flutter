@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "6505465033",
-    "project_id": "twiliodemo-9cbd0",
+    "project_number": "'Replace with your value'",
+    "project_id": "Replace with your value",
     "storage_bucket": "twiliodemo-9cbd0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:6505465033:android:612a3947f6fef6e3677918",
+        "mobilesdk_app_id": "'Replace with your value'",
         "android_client_info": {
           "package_name": "com.example.demo_twilio_voicecall"
         }
       },
       "oauth_client": [
         {
-          "client_id": "6505465033-itcftjefdk2mr4q5thve79l3ogcatg5a.apps.googleusercontent.com",
+          "client_id": "Replace with your value",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.demo_twilio_voicecall",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "6505465033-bmh5c0maugir6ea12o8krgo49osg29kb.apps.googleusercontent.com",
+          "client_id": "Replace with your value",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyABKNRg8ObadKT8Wy5-aPAi-QPm64t26cE"
+          "current_key": "-"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "6505465033-bmh5c0maugir6ea12o8krgo49osg29kb.apps.googleusercontent.com",
+              "client_id": "Replace with your value",
               "client_type": 3
             }
           ]
@@ -44,27 +44,27 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:6505465033:android:b766acce6310bba8677918",
+        "mobilesdk_app_id": "Replace with your value",
         "android_client_info": {
           "package_name": "com.twilio.voice.flutter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "6505465033-bmh5c0maugir6ea12o8krgo49osg29kb.apps.googleusercontent.com",
+          "client_id": "Replace with your value",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyABKNRg8ObadKT8Wy5-aPAi-QPm64t26cE"
+          "current_key": "Replace with your value"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "6505465033-bmh5c0maugir6ea12o8krgo49osg29kb.apps.googleusercontent.com",
+              "client_id": "Replace with your value",
               "client_type": 3
             }
           ]
