@@ -5,7 +5,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'twilio_voice_flutter'
-  s.version          = '0.0.4'
+  s.version          = '0.0.6'
   s.summary          = 'Voice SDK to allow adding voice-over-IP (VoIP) calling into your Flutter applications.'
   s.description      = <<-DESC
 The twilio_voice_flutter package simplifies integration with Twilio's Programmable Voice SDK, enabling VoIP calling within your Flutter apps. It supports both iOS and Android, offering an easy-to-use API for managing calls. Ideal for customer service, communication, or any app needing real-time voice, it leverages Twilio's reliable infrastructure to deliver high-quality VoIP features.

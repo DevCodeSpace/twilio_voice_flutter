@@ -8,7 +8,7 @@ Add dependency to your `pubspec.yaml` file & run Pub get
 
 ```yaml
 dependencies:
-  twilio_voice_flutter: ^0.0.4
+  twilio_voice_flutter: ^0.0.6
 ```
 And import package into your class file
 
