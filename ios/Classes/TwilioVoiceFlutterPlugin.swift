@@ -464,14 +464,14 @@ public class TwilioVoiceFlutterPlugin: NSObject, FlutterPlugin, NotificationDele
     func callDisconnected(id: UUID, error: String?) {
         self.call = nil
         self.callInvite = nil
-        self.fromDisplayName = nil
+        self.fromDisplayName = nilCall event: callDisconnected 
         self.toDisplayName = nil
         self.callKitCompletionCallback = nil
         self.userInitiatedDisconnect = false
 
         DispatchQueue.main.async {
             self.callStatus = "callDisconnected"
-            self.channel?.invokeMethod("callDisconnected", arguments: nil)
+            self.channel?.invokeMethod("callDisconnected", arguments: [:])
         }
 
 

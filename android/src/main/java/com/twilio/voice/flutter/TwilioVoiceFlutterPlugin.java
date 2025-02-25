@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class TwilioVoiceFlutterPlugin
-    implements FlutterPlugin, MethodCallHandler, EventChannel.StreamHandler, ActivityAware, NewIntentListener {
+        implements FlutterPlugin, MethodCallHandler, EventChannel.StreamHandler, ActivityAware, NewIntentListener {
   private static final String TAG = "TwilioVoiceFlutter";
   public static final String ACTION_CALL_EVENT = "ACTION_CALL_EVENT";
   private static final String METHOD_CHANNEL_NAME = "twilio_voice_flutter";
@@ -68,7 +68,7 @@ public class TwilioVoiceFlutterPlugin
   public void onAttachedToEngine(@NonNull FlutterPlugin.FlutterPluginBinding flutterPluginBinding) {
     Log.d(TAG, "onAttachedToEngine");
     context = flutterPluginBinding.getApplicationContext();
-    preferencesUtils = new PreferencesUtils(context);
+    preferencesUtils = PreferencesUtils.getInstance(context);
     methodChannel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), METHOD_CHANNEL_NAME);
     methodChannel.setMethodCallHandler(this);
 
@@ -108,6 +108,9 @@ public class TwilioVoiceFlutterPlugin
       case "makeCall":
         String to = call.argument("to");
         makeCall(to, result);
+        break;
+      case "activeCall":
+        result.success(getCallDetails());
         break;
       case "hangUp":
         hangup(result);
@@ -165,10 +168,10 @@ public class TwilioVoiceFlutterPlugin
       @Override
       public void onError(RegistrationException error, String accessToken, String fcmToken) {
         String message = String.format(
-            Locale.US,
-            "Registration Error: %d, %s",
-            error.getErrorCode(),
-            error.getMessage());
+                Locale.US,
+                "Registration Error: %d, %s",
+                error.getErrorCode(),
+                error.getMessage());
 
         Log.d(TAG, "Error unregistering. " + message);
       }
@@ -187,10 +190,11 @@ public class TwilioVoiceFlutterPlugin
     Map<String, String> params = new HashMap<>();
     params.put("to", to);
     ConnectOptions connectOptions = new ConnectOptions.Builder(accessToken)
-        .params(params)
-        .build();
+            .params(params)
+            .build();
     activeCall = Voice.connect(context, connectOptions, callListener);
-    result.success("Calling " + to);
+
+    result.success(getCallDetails());
   }
 
   private void hangup(Result result) {
@@ -270,13 +274,13 @@ public class TwilioVoiceFlutterPlugin
 
       @Override
       public void onError(@NonNull RegistrationException error,
-          @NonNull String accessToken,
-          @NonNull String fcmToken) {
+                          @NonNull String accessToken,
+                          @NonNull String fcmToken) {
         String message = String.format(
-            Locale.US,
-            "Registration Error: %d, %s",
-            error.getErrorCode(),
-            error.getMessage());
+                Locale.US,
+                "Registration Error: %d, %s",
+                error.getErrorCode(),
+                error.getMessage());
         Log.e(TAG, message);
 
       }
@@ -296,10 +300,10 @@ public class TwilioVoiceFlutterPlugin
       @Override
       public void onConnectFailure(@NonNull Call call, @NonNull CallException error) {
         String message = String.format(
-            Locale.US,
-            "Call Error: %d, %s",
-            error.getErrorCode(),
-            error.getMessage());
+                Locale.US,
+                "Call Error: %d, %s",
+                error.getErrorCode(),
+                error.getMessage());
         Log.e(TAG, message);
         status = "callFailure";
         sendEvent("callFailure", message);
@@ -332,10 +336,10 @@ public class TwilioVoiceFlutterPlugin
         Log.d(TAG, "Disconnected");
         if (error != null) {
           String message = String.format(
-              Locale.US,
-              "Call Error: %d, %s",
-              error.getErrorCode(),
-              error.getMessage());
+                  Locale.US,
+                  "Call Error: %d, %s",
+                  error.getErrorCode(),
+                  error.getMessage());
           sendEvent("callDisconnected", message);
         } else {
           sendEvent("callDisconnected", "");

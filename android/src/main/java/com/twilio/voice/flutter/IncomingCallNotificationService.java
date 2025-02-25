@@ -81,7 +81,7 @@ public class IncomingCallNotificationService extends Service {
         return null;
     }
 
-    private Notification createNotification(CallInvite callInvite, int notificationId, int channelImportance) {
+    private Notification createNotification(CallInvite callInvite, int notificationId) {
         Intent intent = new Intent(this, NotificationProxyActivity.class);
         intent.setAction(TwilioConstants.ACTION_INCOMING_CALL_NOTIFICATION);
         intent.putExtra(TwilioConstants.INCOMING_CALL_NOTIFICATION_ID, notificationId);
@@ -100,7 +100,7 @@ public class IncomingCallNotificationService extends Service {
                     extras,
                     callInvite,
                     notificationId,
-                    createChannel(channelImportance));
+                    createChannel());
         } else {
             return new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.ic_phone_call)
@@ -126,12 +126,8 @@ public class IncomingCallNotificationService extends Service {
         rejectIntent.putExtra(TwilioConstants.EXTRA_INCOMING_CALL_INVITE, callInvite);
         rejectIntent.putExtra(TwilioConstants.INCOMING_CALL_NOTIFICATION_ID, notificationId);
         PendingIntent piRejectIntent;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            piRejectIntent = PendingIntent.getActivity(this, 0, rejectIntent,
-                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-        } else {
-            piRejectIntent = PendingIntent.getActivity(this, 0, rejectIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        }
+        piRejectIntent = PendingIntent.getActivity(this, 0, rejectIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Intent acceptIntent = new Intent(getApplicationContext(), NotificationProxyActivity.class);
         acceptIntent.setAction(TwilioConstants.ACTION_ACCEPT);
@@ -139,12 +135,8 @@ public class IncomingCallNotificationService extends Service {
         acceptIntent.putExtra(TwilioConstants.INCOMING_CALL_NOTIFICATION_ID, notificationId);
         acceptIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent piAcceptIntent;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            piAcceptIntent = PendingIntent.getActivity(this, 0, acceptIntent,
-                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-        } else {
-            piAcceptIntent = PendingIntent.getActivity(this, 0, acceptIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        }
+        piAcceptIntent = PendingIntent.getActivity(this, 0, acceptIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Notification.Builder builder = new Notification.Builder(getApplicationContext(), channelId)
                 .setSmallIcon(R.drawable.ic_phone_call)
@@ -168,16 +160,11 @@ public class IncomingCallNotificationService extends Service {
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    private String createChannel(int channelImportance) {
+    private String createChannel() {
         NotificationChannel callInviteChannel = new NotificationChannel(TwilioConstants.VOICE_CHANNEL_HIGH_IMPORTANCE,
                 "Primary Voice Channel", NotificationManager.IMPORTANCE_HIGH);
         String channelId = TwilioConstants.VOICE_CHANNEL_HIGH_IMPORTANCE;
 
-        if (channelImportance == NotificationManager.IMPORTANCE_LOW) {
-            callInviteChannel = new NotificationChannel(TwilioConstants.VOICE_CHANNEL_LOW_IMPORTANCE,
-                    "Primary Voice Channel", NotificationManager.IMPORTANCE_LOW);
-            channelId = TwilioConstants.VOICE_CHANNEL_LOW_IMPORTANCE;
-        }
         callInviteChannel.setLightColor(Color.GREEN);
         callInviteChannel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -262,13 +249,13 @@ public class IncomingCallNotificationService extends Service {
     private void setCallInProgressNotification(CallInvite callInvite, int notificationId) {
         if (isAppVisible()) {
             Log.i(TAG, "setCallInProgressNotification - app is visible.");
-            Notification notification = createNotification(callInvite, notificationId,
-                    NotificationManager.IMPORTANCE_HIGH);
+            Notification notification = createNotification(callInvite, notificationId
+            );
             startForeground(notificationId, notification);
         } else {
             Log.i(TAG, "setCallInProgressNotification - app is NOT visible.");
-            Notification notification = createNotification(callInvite, notificationId,
-                    NotificationManager.IMPORTANCE_HIGH);
+            Notification notification = createNotification(callInvite, notificationId
+            );
             startForeground(notificationId, notification);
         }
     }

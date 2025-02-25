@@ -9,9 +9,17 @@ public class PreferencesUtils {
     private static final String KEY_FCM_TOKEN = "fcm_token";
 
     private final SharedPreferences sharedPreferences;
+    private static PreferencesUtils instance;
 
-    public PreferencesUtils(Context context) {
+    private PreferencesUtils(Context context) {
         sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+    }
+
+    public static synchronized PreferencesUtils getInstance(Context context) {
+        if (instance == null) {
+            instance = new PreferencesUtils(context.getApplicationContext());
+        }
+        return instance;
     }
 
     public void setAccessToken(String accessToken) {
@@ -39,5 +47,11 @@ public class PreferencesUtils {
         editor.remove(KEY_ACCESS_TOKEN);
         editor.remove(KEY_FCM_TOKEN);
         editor.apply();
+    }
+
+
+    // Add this method to handle contact name lookup
+    public String findContactName(String phoneNumber) {
+        return phoneNumber;
     }
 }
