@@ -107,7 +107,8 @@ public class TwilioVoiceFlutterPlugin
         break;
       case "makeCall":
         String to = call.argument("to");
-        makeCall(to, result);
+        Map<String, String> data = call.argument("data");
+        makeCall(to, data, result);
         break;
       case "activeCall":
         result.success(getCallDetails());
@@ -178,7 +179,7 @@ public class TwilioVoiceFlutterPlugin
     });
   }
 
-  private void makeCall(String to, Result result) {
+  private void makeCall(String to, Map<String, String> data, Result result) {
     String accessToken = preferencesUtils.getAccessToken();
     if (accessToken == null) {
       result.error("NO_ACCESS_TOKEN", "No access token available", null);
@@ -187,10 +188,9 @@ public class TwilioVoiceFlutterPlugin
 
     sendEvent("callConnecting", "");
 
-    Map<String, String> params = new HashMap<>();
-    params.put("to", to);
+    data.put("to", to);
     ConnectOptions connectOptions = new ConnectOptions.Builder(accessToken)
-            .params(params)
+            .params(data)
             .build();
     activeCall = Voice.connect(context, connectOptions, callListener);
 

@@ -13,8 +13,8 @@ class TwilioVoiceFlutter {
   static const MethodChannel _channel = MethodChannel('twilio_voice_flutter');
 
   /// Method channel used to listen for responses from the native platform regarding Twilio voice events.
-  static const MethodChannel _eventChannel =
-      MethodChannel('twilio_voice_flutter_response');
+  static const EventChannel _eventChannel =
+      EventChannel('twilio_voice_flutter_events');
 
   /// StreamController for managing the stream of [TwilioVoiceFlutterEvent] events.
   static late StreamController<TwilioVoiceFlutterEvent> _streamController;
@@ -31,18 +31,20 @@ class TwilioVoiceFlutter {
     _streamController = StreamController.broadcast();
 
     /// Set the method call handler for the event channel to process events coming from the native platform.
-    _eventChannel.setMethodCallHandler((event) async {
-      log("Call event: ${event.method} . Arguments: ${event.arguments}");
+    _eventChannel.receiveBroadcastStream().listen((event) async {
+      final method = event["event"];
+      final arguments = event["data"];
+      log("Call event: $method . Arguments: $arguments");
 
       try {
         /// Get the event type based on the event method name.
-        final eventType = getEventType(event.method);
+        final eventType = getEventType(method);
         TwilioVoiceFlutterCall? call;
 
         /// Try to create a TwilioVoiceFlutterCall object from the event arguments.
         try {
           call = TwilioVoiceFlutterCall.fromMap(
-              Map<String, dynamic>.from(event.arguments));
+              Map<String, dynamic>.from(arguments));
         } catch (error) {
           log("$error");
 
@@ -53,7 +55,7 @@ class TwilioVoiceFlutter {
         _streamController.add(TwilioVoiceFlutterEvent(eventType, call));
       } catch (error, stack) {
         /// Log any error encountered during the event handling process.
-        log("Error parsing call event. ${event.arguments}",
+        log("Error parsing call event. ${arguments}",
             error: error, stackTrace: stack);
       }
     });
@@ -125,7 +127,7 @@ class TwilioVoiceFlutter {
   /// [data] is optional and can include additional information to send with the call; defaults to an empty map.
   static Future<TwilioVoiceFlutterCall> makeCall({
     required String to,
-    Map<String, dynamic> data = const <String, dynamic>{},
+    Map<String, String> data = const <String, String>{},
   }) async {
     final args = <String, Object>{
       "to": to.trim().replaceAll(" ", ""),
